@@ -1,0 +1,37 @@
+---
+title: "RMarkdown Practice"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# This is my title.
+## **This is my first Markdown file**
+### _This is my first Markdown file_
+
+```{r}
+4*2
+```
+
+## This is [Google](http://www.google.com)
+
+```{r}
+3*3
+median(3,4,6,7,4,5)
+2-6
+3/2
+1+1
+```
+```{r}
+#install.packages("tidyverse")
+library("tidyverse")
+```
+
+```{r}
+ggplot(mtcars, aes(x = factor(cyl))) +
+    geom_bar()
+```
