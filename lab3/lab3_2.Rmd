@@ -144,8 +144,9 @@ table(fish$lakeid)
 
 We can also click on the `fish` data frame in the Environment tab or type View(fish).
 ```{r}
-View(fish)
+#View(fish)
 ```
+It did not let me export this as a ".md" file without adding # before view. 
 
 ## Subset
 Subset is a way of pulling out observations that meet specific criteria in a variable.  
