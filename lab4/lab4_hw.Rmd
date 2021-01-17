@@ -1,11 +1,11 @@
 ---
 title: "Lab 4 Homework"
-author: "Please Add Your Name Here"
+author: "Srinidhi Viswanathan"
 date: "`r Sys.Date()`"
 output:
-  html_document:
+  html_document: 
     theme: spacelab
-    toc: no
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -30,24 +30,108 @@ Reference: Tamburello N, Cote IM, Dulvy NK (2015) Energy and the scaling of anim
 Data: http://datadryad.org/resource/doi:10.5061/dryad.q5j65/1  
 
 **1. Load the data into a new object called `homerange`.**
+```{r}
+homerange <- readr::read_csv("data/Tamburelloetal_HomeRangeDatabase.csv")
+```
 
 **2. Explore the data. Show the dimensions, column names, classes for each variable, and a statistical summary. Keep these as separate code chunks.**  
+```{r}
+dim(homerange)
+```
+```{r}
+colnames(homerange)
+```
+```{r}
+summary(homerange)
+```
+```{r}
+str(homerange)
+```
 
 **3. Change the class of the variables `taxon` and `order` to factors and display their levels.**  
+```{r}
+homerange$taxon <- as.factor(homerange$taxon)
+homerange$order <- as.factor(homerange$order)
+levels(homerange$taxon)
+
+```
+```{r}
+levels(homerange$order)
+```
 
 **4. What taxa are represented in the `homerange` data frame? Make a new data frame `taxa` that is restricted to taxon, common name, class, order, family, genus, species.**  
+```{r}
+taxa <- select(homerange, "taxon", "common.name", "class", "order", "family", "genus", "species")
+taxa <- data.frame(taxa)
+taxa
+```
+
 
 **5. The variable `taxon` identifies the large, common name groups of the species represented in `homerange`. Make a table the shows the counts for each of these `taxon`.**  
+```{r}
+table(homerange$taxon)
+```
+
 
 **6. The species in `homerange` are also classified into trophic guilds. How many species are represented in each trophic guild.**  
+```{r}
+table(homerange$trophic.guild)
+```
 
-**7. Make two new data frames, one which is restricted to carnivores and another that is restricted to herbivores.**  
+
+**7. Make two new data frames, one which is restricted to carnivores and another that is restricted to herbivores.** 
+```{r}
+df_carnivore <- data.frame(filter(homerange, trophic.guild=="carnivore"))
+df_herbivore <- data.frame(filter(homerange, trophic.guild=="herbivore"))
+glimpse(df_carnivore)
+```
+```{r}
+glimpse(df_herbivore)
+```
+
 
 **8. Do herbivores or carnivores have, on average, a larger `mean.hra.m2`? Remove any NAs from the data.**  
+```{r}
+mean(df_carnivore$mean.hra.m2, na.rm = T)
+```
+```{r}
+mean(df_herbivore$mean.hra.m2, na.rm = T)
+```
+#### Herbivores have a larger mean.hra.m2 on average.
 
-**9. Make a new dataframe `deer` that is limited to the mean mass, log10 mass, family, genus, and species of deer in the database. The family for deer is cervidae. Arrange the data in descending order by log10 mass. Which is the largest deer? What is its common name?**  
+**9. Make a new dataframe `deer` that is limited to the mean mass, log10 mass, family, genus, and species of deer in the database. The family for deer is cervidae. Arrange the data in descending order by log10 mass. Which is the largest deer? What is its common name?** 
+```{r}
+colnames(homerange)
+```
+
+```{r}
+deer <- data.frame(select(homerange, "mean.mass.g", "log10.mass", "family", "genus", "species"))
+deer <- filter(deer, family=="cervidae")
+sort(deer$log10.mass, decreasing = T)
+deer
+```
+```{r}
+large_deer <- max(deer$mean.mass.g)
+large_deer
+```
+```{r}
+deer_commonname <- data.frame(select(homerange, "common.name","mean.mass.g", "log10.mass", "family", "genus", "species"))
+deer_commonname <- filter(homerange, family=="cervidae")
+largest_deer <- subset(deer_commonname, mean.mass.g==max(mean.mass.g))
+largest_deer
+```
+#### The largest deer is a Moose with a mean mass of 307227.4 g.
 
 **10. As measured by the data, which snake species has the smallest homerange? Show all of your work, please. Look this species up online and tell me about it!** **Snake is found in taxon column**    
+```{r}
+df_snake <- filter(homerange, taxon == "snakes")
+df_snake
+```
+```{r}
+smallest_snake_hr <- subset(df_snake, mean.hra.m2==min(mean.hra.m2))
+smallest_snake_hr
+```
+#### The snake species with the smallest homerange is the Namaqua Dwarf Adder.
 
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences.   
