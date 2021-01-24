@@ -38,14 +38,17 @@ homerange <- readr::read_csv("data/Tamburelloetal_HomeRangeDatabase.csv")
 ```{r}
 dim(homerange)
 ```
+
 ```{r}
 colnames(homerange)
 ```
+
 ```{r}
-summary(homerange)
+#summary(homerange)
 ```
+
 ```{r}
-str(homerange)
+#str(homerange)
 ```
 
 **3. Change the class of the variables `taxon` and `order` to factors and display their levels.**  
@@ -53,8 +56,8 @@ str(homerange)
 homerange$taxon <- as.factor(homerange$taxon)
 homerange$order <- as.factor(homerange$order)
 levels(homerange$taxon)
-
 ```
+
 ```{r}
 levels(homerange$order)
 ```
@@ -62,10 +65,11 @@ levels(homerange$order)
 **4. What taxa are represented in the `homerange` data frame? Make a new data frame `taxa` that is restricted to taxon, common name, class, order, family, genus, species.**  
 ```{r}
 taxa <- select(homerange, "taxon", "common.name", "class", "order", "family", "genus", "species")
-taxa <- data.frame(taxa)
-taxa
+#taxa <- data.frame(taxa)
+#taxa
 ```
 
+_You don't need to make a data frame out of a data frame here_
 
 **5. The variable `taxon` identifies the large, common name groups of the species represented in `homerange`. Make a table the shows the counts for each of these `taxon`.**  
 ```{r}
@@ -85,6 +89,7 @@ df_carnivore <- data.frame(filter(homerange, trophic.guild=="carnivore"))
 df_herbivore <- data.frame(filter(homerange, trophic.guild=="herbivore"))
 glimpse(df_carnivore)
 ```
+
 ```{r}
 glimpse(df_herbivore)
 ```
@@ -94,6 +99,7 @@ glimpse(df_herbivore)
 ```{r}
 mean(df_carnivore$mean.hra.m2, na.rm = T)
 ```
+
 ```{r}
 mean(df_herbivore$mean.hra.m2, na.rm = T)
 ```
@@ -110,10 +116,12 @@ deer <- filter(deer, family=="cervidae")
 sort(deer$log10.mass, decreasing = T)
 deer
 ```
+
 ```{r}
 large_deer <- max(deer$mean.mass.g)
 large_deer
 ```
+
 ```{r}
 deer_commonname <- data.frame(select(homerange, "common.name","mean.mass.g", "log10.mass", "family", "genus", "species"))
 deer_commonname <- filter(homerange, family=="cervidae")
@@ -127,6 +135,7 @@ largest_deer
 df_snake <- filter(homerange, taxon == "snakes")
 df_snake
 ```
+
 ```{r}
 smallest_snake_hr <- subset(df_snake, mean.hra.m2==min(mean.hra.m2))
 smallest_snake_hr
