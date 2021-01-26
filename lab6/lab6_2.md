@@ -263,6 +263,34 @@ penguins %>%
 
 3. For some penguins, their sex is listed as NA. Where do these penguins occur?
 
+```r
+penguins %>% 
+  group_by(island) %>% 
+  summarize(sex_na = is.na(sex)) %>% 
+  filter(sex_na==TRUE)
+```
+
+```
+## `summarise()` regrouping output by 'island' (override with `.groups` argument)
+```
+
+```
+## # A tibble: 11 x 2
+## # Groups:   island [3]
+##    island    sex_na
+##    <fct>     <lgl> 
+##  1 Biscoe    TRUE  
+##  2 Biscoe    TRUE  
+##  3 Biscoe    TRUE  
+##  4 Biscoe    TRUE  
+##  5 Biscoe    TRUE  
+##  6 Dream     TRUE  
+##  7 Torgersen TRUE  
+##  8 Torgersen TRUE  
+##  9 Torgersen TRUE  
+## 10 Torgersen TRUE  
+## 11 Torgersen TRUE
+```
 
 ## `across()`
 Last time we had some great questions on how to use `filter()` and `select()` across multiple variables. There is a new function in dplyr called `across()` which is designed to work across multiple variables. Have a look at Rebecca Barter's awesome blog [here](http://www.rebeccabarter.com/blog/2020-07-09-across/) as I am following her below.  

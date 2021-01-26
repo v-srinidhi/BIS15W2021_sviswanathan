@@ -262,6 +262,21 @@ msleep %>%
 ## Practice
 1. What is the mean, min, and max `bodywt` for the taxonomic order Primates? Provide the total number of observations.
 
+```r
+msleep %>% 
+  filter(order=="Primates") %>% 
+  summarise(mean_bodywt = mean(bodywt, na.rm = T),
+            min_bodywt = min(bodywt, na.rm = T),
+            max_bodywt = max(bodywt, na.rm = T),
+            n_samples=n())
+```
+
+```
+## # A tibble: 1 x 4
+##   mean_bodywt min_bodywt max_bodywt n_samples
+##         <dbl>      <dbl>      <dbl>     <int>
+## 1        13.9        0.2         62        12
+```
 
 `n_distinct()` is a very handy way of cleanly presenting the number of distinct observations. Here we show the number of distinct genera over 100 in body weight.
 

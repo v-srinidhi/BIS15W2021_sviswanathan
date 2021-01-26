@@ -1711,6 +1711,26 @@ library(&quot;palmerpenguins&quot;)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>For some penguins, their sex is listed as NA. Where do these penguins occur?</li>
 </ol>
+<pre class="r"><code>penguins %&gt;% 
+  group_by(island) %&gt;% 
+  summarize(sex_na = is.na(sex)) %&gt;% 
+  filter(sex_na==TRUE)</code></pre>
+<pre><code>## `summarise()` regrouping output by &#39;island&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 11 x 2
+## # Groups:   island [3]
+##    island    sex_na
+##    &lt;fct&gt;     &lt;lgl&gt; 
+##  1 Biscoe    TRUE  
+##  2 Biscoe    TRUE  
+##  3 Biscoe    TRUE  
+##  4 Biscoe    TRUE  
+##  5 Biscoe    TRUE  
+##  6 Dream     TRUE  
+##  7 Torgersen TRUE  
+##  8 Torgersen TRUE  
+##  9 Torgersen TRUE  
+## 10 Torgersen TRUE  
+## 11 Torgersen TRUE</code></pre>
 </div>
 <div id="across" class="section level2">
 <h2><code>across()</code></h2>

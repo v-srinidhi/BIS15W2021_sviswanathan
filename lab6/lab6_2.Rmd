@@ -119,6 +119,10 @@ penguins %>%
 
 3. For some penguins, their sex is listed as NA. Where do these penguins occur?
 ```{r}
+penguins %>% 
+  group_by(island) %>% 
+  summarize(sex_na = is.na(sex)) %>% 
+  filter(sex_na==TRUE)
 
 ```
 
