@@ -1,7 +1,7 @@
 ---
 title: "Midterm 1"
 author: "Srinidhi Viswanathan"
-date: "2021-01-27"
+date: "2021-02-09"
 output:
   html_document: 
     theme: spacelab
@@ -28,11 +28,12 @@ library("skimr")
 
 ## Questions
 **1. (2 points) Briefly explain how R, RStudio, and GitHub work together to make work flows in data science transparent and repeatable. What is the advantage of using RMarkdown in this context?**  
-###### R is a scripting language that you can use through RStudio, a graphical user interface. RStudio makes R easier to use by providing an interface that is more user-friendly and easier to navigate. Github is a place in which programmers can store code they have written. It is useful to programmers because this code is publicly available and can be used by everybody. It is also a way to easily store your work in an organized way. RMarkdown is a type of document in which code can be embedded. This type of document makes it easy for other programmers to view and understand the code you have written. Therefore, it is advantageous to use RMarkdown on Github because it allows for others to view your code in an organized way.
+
+_R is a scripting language that you can use through RStudio, a graphical user interface. RStudio makes R easier to use by providing an interface that is more user-friendly and easier to navigate. Github is a place in which programmers can store code they have written. It is useful to programmers because this code is publicly available and can be used by everybody. It is also a way to easily store your work in an organized way. RMarkdown is a type of document in which code can be embedded. This type of document makes it easy for other programmers to view and understand the code you have written. Therefore, it is advantageous to use RMarkdown on Github because it allows for others to view your code in an organized way._  
 
 **2. (2 points) What are the three types of `data structures` that we have discussed? Why are we using data frames for BIS 15L?**
 
-###### The three types of data structures that we have discussed are vectors, data matrices, and data frames. We use data frames in BIS15L because there are a lot of functions that are useful to manipulate data in data frames. These functions are especially useful in a biological context, which is one of the goals of this class.
+_The three types of data structures that we have discussed are vectors, data matrices, and data frames. We use data frames in BIS15L because there are a lot of functions that are useful to manipulate data in data frames. These functions are especially useful in a biological context, which is one of the goals of this class._
 
 In the midterm 1 folder there is a second folder called `data`. Inside the `data` folder, there is a .csv file called `ElephantsMF`. These data are from Phyllis Lee, Stirling University, and are related to Lee, P., et al. (2013), "Enduring consequences of early experiences: 40-year effects on survival and success among African elephants (Loxodonta africana)," Biology Letters, 9: 20130011. [kaggle](https://www.kaggle.com/mostafaelseidy/elephantsmf).  
 
@@ -86,7 +87,6 @@ Table: Data summary
 |Age           |         0|             1|  10.97|  8.4|  0.01|   4.58|   9.46|  16.50|  32.17|▆▇▂▂▂ |
 |Height        |         0|             1| 187.68| 50.6| 75.46| 160.75| 200.00| 221.09| 304.06|▃▃▇▇▁ |
 
-
 **4. (2 points) Change the names of the variables to lower case and change the class of the variable `sex` to a factor.**
 
 ```r
@@ -100,6 +100,7 @@ names(elephants)
 ## [1] "age"    "height" "sex"
 ```
 
+
 ```r
 is.factor(elephants$sex)
 ```
@@ -108,12 +109,10 @@ is.factor(elephants$sex)
 ## [1] TRUE
 ```
 
-
 **5. (2 points) How many male and female elephants are represented in the data?**
 
 ```r
-elephants %>% 
-  count(sex, sort = T) 
+elephants %>% count(sex, sort = T) 
 ```
 
 ```
@@ -123,13 +122,12 @@ elephants %>%
 ## 1 F       150
 ## 2 M       138
 ```
-###### There are 150 females and 138 males. 
+_There are 150 females and 138 males._  
 
 **6. (2 points) What is the average age all elephants in the data?**
 
 ```r
-elephants %>% 
-  summarise(avg_age = mean(age))
+elephants %>% summarise(avg_age = mean(age))
 ```
 
 ```
@@ -138,7 +136,8 @@ elephants %>%
 ##     <dbl>
 ## 1    11.0
 ```
-###### The average age is 10.97132.
+
+_The average age is 10.97132._  
 
 **7. (2 points) How does the average age and height of elephants compare by sex?**
 
@@ -149,19 +148,16 @@ elephants %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 2 x 2
 ##   sex   avg_age
-##   <fct>   <dbl>
+## * <fct>   <dbl>
 ## 1 F       12.8 
 ## 2 M        8.95
 ```
-###### The average age for female elephants is 12.835400 years.
-###### The average age for male elephants is 8.945145 years.
 
+_The average age for female elephants is 12.835400 years._  
+
+_The average age for male elephants is 8.945145 years._  
 
 **8. (2 points) How does the average height of elephants compare by sex for individuals over 25 years old. Include the min and max height as well as the number of individuals in the sample as part of your analysis.**
 
@@ -176,17 +172,12 @@ elephants %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 2 x 5
 ##   sex   average_height max_height min_height number_indv
-##   <fct>          <dbl>      <dbl>      <dbl>       <int>
+## * <fct>          <dbl>      <dbl>      <dbl>       <int>
 ## 1 F               233.       278.       206.          25
 ## 2 M               273.       304.       237.           8
 ```
-
 
 For the next series of questions, we will use data from a study on vertebrate community composition and impacts from defaunation in [Gabon, Africa](https://en.wikipedia.org/wiki/Gabon). One thing to notice is that the data include 24 separate transects. Each transect represents a path through different forest management areas.  
 
@@ -274,7 +265,6 @@ Table: Data summary
 view(vertabrate)
 ```
 
-
 **10. (4 points) For the transects with high and moderate hunting intensity, how does the average diversity of birds and mammals compare?**
 
 ```r
@@ -286,19 +276,17 @@ vertabrate %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 3 x 4
 ##   huntcat  avg_diversity_mammals average_diversity_birds total_observations
-##   <fct>                    <dbl>                   <dbl>              <int>
+## * <fct>                    <dbl>                   <dbl>              <int>
 ## 1 High                      1.74                    1.66                  7
 ## 2 Moderate                  1.68                    1.62                  8
 ## 3 None                      1.68                    1.70                  9
 ```
-###### Among the transects with high hunting intensity, the average diversity of mammals is 1.73700, and the average diversity of birds is 1.660857. 
-###### Among the transects with moderate hunting intensity, the average diversity of mammals is 1.68375, and the average diversity of birds is 1.621250.
+
+_Among the transects with high hunting intensity, the average diversity of mammals is 1.73700, and the average diversity of birds is 1.660857._  
+
+_Among the transects with moderate hunting intensity, the average diversity of mammals is 1.68375, and the average diversity of birds is 1.621250._  
 
 **11. (4 points) One of the conclusions in the study is that the relative abundance of animals drops off the closer you get to a village. Let's try to reconstruct this (without the statistics). How does the relative abundance (RA) of apes, birds, elephants, monkeys, rodents, and ungulates compare between sites that are less than 5km from a village to sites that are greater than 20km from a village? The variable `Distance` measures the distance of the transect from the nearest village. Hint: try using the `across` operator.**  
 
@@ -352,21 +340,18 @@ far
 ##     <dbl>    <dbl>       <dbl>      <dbl>       <dbl>
 ## 1    7.21     44.5       0.557       40.1        4.98
 ```
-###### In general, the relative abundance is higher farther away from human populations. However, birds have a higher relative abundance closer to humans.
+_In general, the relative abundance is higher farther away from human populations. However, birds have a higher relative abundance closer to humans._  
 
+**12. (4 points) Based on your interest, do one exploratory analysis on the `gabon` data of your choice. This analysis needs to include a minimum of two functions in `dplyr.`**  
 
-**12. (4 points) Based on your interest, do one exploratory analysis on the `gabon` data of your choice. This analysis needs to include a minimum of two functions in `dplyr.`**
-###### What is the average diversity of birds and mammals when considering what the land they are on is used for?
+_What is the average diversity of birds and mammals when considering what the land they are on is used for?_  
+
 
 ```r
 vertabrate %>% 
   group_by(landuse) %>% 
   summarize(across(c(diversity_birdspecies, diversity_mammalspecies, diversity_allspecies), mean)) %>% 
   arrange(desc(diversity_allspecies))
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
@@ -378,3 +363,4 @@ vertabrate %>%
 ## 3 Logging                  1.56                    1.68                 2.23
 ```
 
+_Great job Sri! I made a few formatting suggestions that you might try to follow._
