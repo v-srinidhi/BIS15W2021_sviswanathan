@@ -1,10 +1,11 @@
 ---
 title: "Data Visualization: `ggplot` part 3"
 output:
-  html_document:
+  html_document: 
     theme: spacelab
     toc: yes
     toc_float: yes
+    keep_md: yes
   pdf_document:
     toc: yes
 ---
