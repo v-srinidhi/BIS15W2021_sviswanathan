@@ -55,7 +55,7 @@ p
 ```
 
 ```{r}
-p+theme_linedraw()+
+p+theme_classic()+
   theme(axis.text.x = element_text(angle = 60, hjust=1))+
   labs(title = "Observations by Taxon in Homerange Data",
        x = NULL,
@@ -67,7 +67,7 @@ p+theme_linedraw()+
 There are lots of options to manipulate legends. Have a look [here](http://www.sthda.com/english/wiki/ggplot2-legend-easy-steps-to-change-the-position-and-the-appearance-of-a-graph-legend-in-r-software).
 ```{r}
 p+theme_linedraw()+
-  theme(legend.position = "bottom",
+  theme(legend.position = 'bottom',
         axis.text.x = element_text(angle = 60, hjust=1))+
   labs(title = "Observations by Taxon in Homerange Data",
        x = NULL,
@@ -87,7 +87,7 @@ ls("package:ggthemes")[grepl("theme_", ls("package:ggthemes"))]
 ```
 
 ```{r}
-p+ theme_pander()+
+p+ theme_stata()+
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 60, hjust=1))+
   labs(title = "Observations by Taxon in Homerange Data",
@@ -130,10 +130,13 @@ You can also use `paleteer` to build a custom palette for consistency. To access
 ```{r}
 colors <- paletteer::palettes_d_names
 ```
+```{r}
+view(colors)
+```
 
 Now we can display the palettes. Assign the palette to `my_palette` and then build this base R bar plot. There are a lot of options; `paleteer` is a collection of popular palettes. I really like the [`ggsci` package] (https://cran.r-project.org/web/packages/ggsci/vignettes/ggsci.html)
 ```{r}
-my_palette <- paletteer_d("ggsci::hallmarks_light_cosmic")
+my_palette <- paletteer_d("ggsci::springfield_simpsons")
 ```
 
 ```{r}
@@ -164,7 +167,8 @@ homerange %>%
 ## Practice
 1. Revisit the relationship between mass and homerange using a scatterplot, but color the points by taxonomic class using a custom color theme.
 ```{r}
-
+homerange %>% 
+  ggplot(aes(x=log10.mass, y=log10.hra))+geom_point()
 ```
 
 2. Build bar plots that show the representation by taxonomic class with carnivores and herbivores. Try using a color theme that matches your scatterplot to keep everything consistent.
@@ -178,6 +182,7 @@ homerange %>%
 p2 <- homerange %>% 
   ggplot(aes(x = log10.mass)) +
   geom_density()
+p2
 ```
 
 ```{r}
@@ -187,7 +192,7 @@ p2+ facet_wrap(~taxon)
 ## Faceting: `facet_grid()`
 As you can imagine, there are lots of options for faceting. Another useful facet type is `facet_grid`. 
 ```{r}
-p2+facet_grid(thermoregulation~class)
+p2+facet_grid(locomotion~class)
 ```
 
 ## That's it, let's take a break!   
