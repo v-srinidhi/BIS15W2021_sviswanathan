@@ -2,6 +2,8 @@
 title: "Intro to Shiny Part 2"
 date: "`r Sys.Date()`"
 output:
+  html_notebook: 
+    toc: yes
   html_document:
     theme: spacelab
     toc: yes
