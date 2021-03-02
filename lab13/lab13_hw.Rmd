@@ -45,6 +45,9 @@ head(UC_admit)
 ###### NAs are shown by "NA".
 
 **2. The president of UC has asked you to build a shiny app that shows admissions by ethnicity across all UC campuses. Your app should allow users to explore year, campus, and admit category as interactive variables. Use shiny dashboard and try to incorporate the aesthetics you have learned in ggplot to make the app neat and clean.**
+
+#### I also made these stand alone apps names "Lab13Question2" and "Lab13Question3".
+
 ```{r}
 options(scipen = 999)
 ```
