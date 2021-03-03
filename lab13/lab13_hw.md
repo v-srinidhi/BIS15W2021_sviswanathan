@@ -1,7 +1,7 @@
 ---
 title: "Lab 13 Homework"
 author: "Srinidhi Viswanathan"
-date: "2021-03-02"
+date: "2021-03-03"
 output:
   html_document: 
     theme: spacelab
@@ -26,18 +26,18 @@ if (!require("tidyverse")) install.packages('tidyverse')
 ```
 
 ```
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
+## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
 ```
 
 ```
-## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
-## ✓ tibble  3.0.4     ✓ dplyr   1.0.2
-## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
-## ✓ readr   1.4.0     ✓ forcats 0.5.0
+## √ ggplot2 3.3.3     √ purrr   0.3.4
+## √ tibble  3.1.0     √ dplyr   1.0.4
+## √ tidyr   1.1.3     √ stringr 1.4.0
+## √ readr   1.4.0     √ forcats 0.5.1
 ```
 
 ```
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 ```
@@ -59,7 +59,7 @@ UC_admit <- readr::read_csv("data/UC_admit.csv")
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   Campus = col_character(),
 ##   Academic_Yr = col_double(),
