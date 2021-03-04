@@ -67,6 +67,7 @@ pop_tidy
 ```{r}
 skim(income)
 ```
+
 ```{r}
 income_tidy <- income %>% 
   pivot_longer(-country, #country does not pivot
@@ -80,6 +81,7 @@ income_tidy
 ```{r}
 skim(life_expectancy)
 ```
+
 ```{r}
 life_tidy <- life_expectancy %>% 
   pivot_longer(-country, #country does not pivot
@@ -99,6 +101,10 @@ pop_tidy %>%
 ```
 ###### There are 195 different countries represented in the population data.
 
+You could also think about something like this...
+```{r}
+n_distinct(pop_tidy$country)
+```
 
 ##### For the income data:
 ```{r}
